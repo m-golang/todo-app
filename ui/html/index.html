@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busy Day</title>
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link href="https://fonts.googls.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="logo">
+                <img src="../static/images/web/check_square_icon.svg" alt="logo" />
+                Busy Day
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-container">
+        <div class="inner-container container-one">
+            <div class="left-item">
+                <h2>Hello!</h2>
+                {{if .error}}
+                    <p style="color: red; font-weight: bold; font-size: 20px;">{{.error}}</p>
+                {{end}}
+            </div>
+            <div class="right-item">
+                <h3>Todos</h3>
+            </div>
+        </div>
+
+        <form action="/list/new" method="POST">
+            <div class="inner-container container-two">
+                <input name="New_list" type="text" placeholder="New todos list ..." required/>
+                <button class="create-list-button">+ Add New List</button>
+            </div>
+        </form>
+
+        
+
+        <div class="inner-container container-three">
+            <div class="card-container">
+                
+                <div class="card" style="background-color: #c6ffe5;">
+                    <ul class="cart-title">
+                        <li class="todo-list-title">
+                            <span>Tasks</span>
+                                <button style="background: none; border: none; ">
+                                    <img src="../static/images/web/bin.svg" alt="bin icon" />
+                                </button>
+                        </li>
+                        <li class="today-text-title">
+                            <img src="../static/images/web/calendar.svg" alt="calendar icon" />
+                            <span class="today-text">Today</span>
+                        </li>
+                    </ul>
+                    <ul class="cart-items">
+                        <li class="cart-item">
+                            <button style="background: none; border: none;">
+                                <img src="../static/images/web/blank_check_box.svg" alt="box icon" />
+                            </button>
+                            <span class="todo-text" style="font-weight: 600; align-items:left; justify-self:left;">View all projects</span>
+                            <button style="background: none; border: none;">
+                                <img src="../static/images/web/x.svg" alt="box icon" style="width: 10px;
+                                height: 10px;" />
+                            </button>
+                        </li>
+                    </ul>
+                    <ul class="cart-items">
+                        <li class="cart-item">
+                            <button style="background: none; border: none;">
+                                <img src="../static/images/web/blank_check_box.svg" alt="box icon" />
+                            </button>
+                            <span class="todo-text" style="font-weight: 600; align-items:left; justify-self:left;">and</span>
+                            <button style="background: none; border: none;">
+                                <img src="../static/images/web/x.svg" alt="box icon" style="width: 10px;
+                                height: 10px;" />
+                            </button>
+                        </li>
+                    </ul>
+                    <ul class="cart-items">
+                        <li class="cart-item">
+                            <button style="background: none; border: none;">
+                                <img src="../static/images/web/blank_check_box.svg" alt="box icon" />
+                            </button>
+                            <span class="todo-text" style="font-weight: 600; align-items:left; justify-self:left;">hire this candidate !</span>
+                            <button style="background: none; border: none;">
+                                <img src="../static/images/web/x.svg" alt="box icon" style="width: 10px;
+                                height: 10px;" />
+                            </button>
+                        </li>
+                    </ul>
+                    <ul class="cart-items">
+                        <li class="cart-item">
+                            <button style="background: none; border: none;">
+                                <img src="../static/images/web/blank_check_box.svg" alt="box icon" />
+                            </button>
+                            <span class="todo-text" style="font-weight: 600; align-items:left; justify-self:left;">For free ;) </span>
+                            <button style="background: none; border: none;">
+                                <img src="../static/images/web/x.svg" alt="box icon" style="width: 10px;
+                                height: 10px;" />
+                            </button>
+                        </li>
+                    </ul>
+                    <ul class="cart-items">
+                        <li class="cart-item-button">
+                            <input  name="New_task" type="text" placeholder="+ Add new task" required>
+                            <button>Add</button>
+                        </li>
+                    </ul>
+                    
+                </div>
+
+                {{if .lists}}
+                    {{range .lists}} 
+                            <div class="card" id="{{.List_id}}">
+                                <ul class="cart-title">
+                                    <li class="todo-list-title">
+                                        <span>{{.List_name}}</span>
+                                        <form action="/list/remove" method="POST">
+                                            <input type="hidden" name="List_id" value="{{.List_id}}">
+                                        
+                                            <button type="submit" style="background: none; border: none; ">
+                                                <img src="../static/images/web/bin.svg" alt="bin icon" />
+                                            </button>
+                                        </form>
+                                        
+                                    </li>
+                                    <li class="today-text-title">
+                                        <img src="../static/images/web/calendar.svg" alt="calendar icon" />
+                                        <span class="today-text">Today</span>
+                                    </li>
+                                </ul>
+                                {{if .Tasks}}
+                                    {{range .Tasks}}
+                                        <ul class="cart-items">
+                                            <li class="cart-item">
+                                                {{if eq .Status_task "0"}}
+                                                    <form action="/task/status" method="POST">
+                                                        <input type="hidden" name="Id_task" value="{{.Id_task}}">
+                                                        <input type="hidden" name="Status_task" value="{{.Status_task}}">
+                                                        <button type="submit" style="background: none; border: none;">
+                                                            <img src="../static/images/web/blank_check_box.svg" alt="box icon" />
+                                                        </button>
+                                                    </form>
+                                                    <span class="todo-text"  style=" align-items:left; justify-self:left;">{{.Task}}</span>
+
+                                                {{else}}
+                                                    <form action="/task/status" method="POST">
+                                                        <input type="hidden" name="Id_task" value="{{.Id_task}}">
+                                                        <input type="hidden" name="Status_task" value="{{.Status_task}}">
+                                                        <button type="submit" style="background: none; border: none;">
+                                                            <img src="../static/images/web/box_check_icon.svg" alt="box icon" />
+                                                        </button>
+                                                    </form>
+                                                    <span class="todo-text" style="align-items:left; justify-self:left;"><s>{{.Task}}</s></span>
+
+                                                {{end}}
+                                               
+                                                <form action="/task/remove" method="POST">
+                                                    <input type="hidden" name="Id_task" value="{{.Id_task}}">
+                                                    <button type="submit" style="background: none; border: none;">
+                                                        <img src="../static/images/web/x.svg" alt="box icon" style="width: 10px;
+                                                        height: 10px;" />
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    {{end}}
+                                {{else}}
+                               <h3 style="margin-left: 20%; color: rgb(131, 131, 131); opacity: 30%; font-weight: 400;">Add new tasks </h3>
+                                {{end}}
+                                <form action="/task/new" method="POST">
+
+                                    <ul class="cart-items">
+                                        <li class="cart-item-button">
+                                                <input type="hidden" name="List_id" value="{{.List_id}}">
+                                                <input  name="New_task" type="text" placeholder="+ Add new task" required>
+                                                <button>Add</button>
+                                        </li>
+                                    </ul>
+                                </form>
+
+                            </div>
+                    {{end}}
+                
+                
+                {{end}}
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-container">
+        <div class="footer-left">
+            <p>&copy; 2024 Busy Day</p>
+        </div>
+    </footer>
+</body>
+</html>
