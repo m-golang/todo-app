@@ -33,8 +33,7 @@ A simple to-do list app built with **Go** and **Gin**. You can create, manage, a
 2. **Install dependencies**:
 
     ```bash
-    bash
-    Copy code
+    go mod tidy
 
 3. **Set up the database**:
 
