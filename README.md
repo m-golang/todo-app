@@ -27,7 +27,7 @@ A simple to-do list app built with **Go** and **Gin**. You can create, manage, a
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/your-username/todo-app.git
+    git clone https://github.com/m-golang/todo-app.git
     cd todo-app
 
 2. **Install dependencies**:
