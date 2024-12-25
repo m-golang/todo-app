@@ -65,11 +65,3 @@ A simple to-do list app built with **Go** and **Gin**. You can create, manage, a
     ```bash
     go run cmd/web/main.go
 
-### Usage
-
-- **Home Page (GET /):** View all to-do lists and tasks.
-- **Create a List (POST /list/new):** Create a new to-do list.
-- **Create a Task (POST /task/new):** Add a new task to a list.
-- **Change Task Status (POST /task/status):** Mark a task as done or undone.
-- **Delete List (POST /list/remove):** Delete a to-do list.
-- **Delete Task (POST /task/remove):** Delete a task from a list.
