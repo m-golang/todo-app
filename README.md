@@ -13,7 +13,6 @@ A simple to-do list app built with **Go** and **Gin**. You can create, manage, a
 - **Go** (Backend)
 - **Gin** (Web framework)
 - **MySQL** (Database)
-- **HTML/CSS** (Front-end)
 
 ## Installation
 
