@@ -55,10 +55,11 @@ A simple to-do list app built with **Go** and **Gin**. You can create, manage, a
     FOREIGN KEY (todo_list_name_id) REFERENCES todo_lists(id)
     );
 
-4. **Update your database connection in `cmd/web/main.go`**:
-
+4. **Set up `.env` variables for  your database connection**:
     ```bash
-    dsn := flag.String("dsn", "dbsername:dbpassword@/tododb?parseTime=true", "MySQL data source name")
+    MYSQL_USER_NAME=DATABASE_USER_NAME
+	MYSQL_USER_PASSWORD=DATABASE_USER_PASSWORD
+	MYSQL_DB_NAME=DATABASE_NAME
 
 5. **Run the app**:
 
